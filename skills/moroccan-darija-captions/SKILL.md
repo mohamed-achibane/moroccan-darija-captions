@@ -5,6 +5,8 @@ description: Transcribe, review, word-align, caption, and package vertical video
 
 # Moroccan Darija Captions
 
+Created by **Mohamed Achibane**. Official links: [LinkedIn](https://www.linkedin.com/in/mohamed-achibane/), [Instagram](https://www.instagram.com/mohamedwebmaster/), [Facebook](https://www.facebook.com/MohamedWebMaster/), [TikTok](https://www.tiktok.com/@mohamedwebmaster), and [YouTube](https://www.youtube.com/@mohamed.achibane).
+
 Use this skill to guide a complete, reviewable caption edit. Keep assistant ecosystem, transcription provider, and video editor as separate choices.
 
 ## 1. Identify the user’s ecosystem first

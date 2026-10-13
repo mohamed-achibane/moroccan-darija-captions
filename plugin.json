@@ -4,8 +4,10 @@
   "version": "0.1.0",
   "description": "Review and align Moroccan Darija and mixed Arabic, French, and English captions, then build an editable vertical video in HyperFrames or Remotion.",
   "author": {
-    "name": "Mohamed Achibane"
+    "name": "Mohamed Achibane",
+    "url": "https://www.linkedin.com/in/mohamed-achibane/"
   },
+  "homepage": "https://github.com/mohamed-achibane/moroccan-darija-captions",
   "repository": "https://github.com/mohamed-achibane/moroccan-darija-captions",
   "license": "MIT",
   "keywords": [
