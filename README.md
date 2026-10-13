@@ -6,7 +6,7 @@ Darija stays in Arabic script. French and English stay in Latin script. The work
 
 ## Creator
 
-Created by **Mohamed Achibane**. These are the creator’s official profiles:
+Created with love by **Mohamed Achibane**. These are the creator’s official profiles:
 
 - [LinkedIn](https://www.linkedin.com/in/mohamed-achibane/)
 - [Instagram](https://www.instagram.com/mohamedwebmaster/)
