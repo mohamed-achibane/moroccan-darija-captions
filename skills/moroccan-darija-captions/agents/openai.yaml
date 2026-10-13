@@ -1,0 +1,9 @@
+interface:
+  display_name: "Moroccan Darija Captions"
+  short_description: "Review and sync Darija captions for vertical video."
+  default_prompt: "Use Moroccan Darija Captions. If the assistant ecosystem is unclear, ask whether I use Codex, ChatGPT, Claude, or Gemini first."
+policy:
+  products:
+    - CHAT
+    - CODEX
+  allow_implicit_invocation: true

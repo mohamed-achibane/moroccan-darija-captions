@@ -1,0 +1,37 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "moroccan-darija-captions",
+  "version": "0.1.0",
+  "description": "Review and align Moroccan Darija and mixed Arabic, French, and English captions, then build an editable vertical video in HyperFrames or Remotion.",
+  "author": {
+    "name": "Mohamed Achibane"
+  },
+  "repository": "https://github.com/mohamed-achibane/moroccan-darija-captions",
+  "license": "MIT",
+  "keywords": [
+    "moroccan-darija",
+    "arabic-captions",
+    "word-timestamps",
+    "hyperframes",
+    "remotion"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Moroccan Darija Captions",
+        "shortDescription": "Sync Darija video captions",
+        "longDescription": "Choose your assistant, current transcription model, and video editor. Preserve Darija in Arabic script, review word timings, and render mixed-script captions with HyperFrames or Remotion.",
+        "developerName": "Mohamed Achibane",
+        "category": "Productivity",
+        "capabilities": [
+          "Review mixed-language transcripts",
+          "Align word-level captions",
+          "Build vertical video captions"
+        ],
+        "defaultPrompt": [
+          "Use Moroccan Darija Captions. If the assistant ecosystem is unclear, ask whether I use Codex, ChatGPT, Claude, or Gemini."
+        ]
+      }
+    }
+  }
+}
