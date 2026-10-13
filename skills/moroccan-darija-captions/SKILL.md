@@ -24,11 +24,15 @@ Do not assume that one product’s skill installer, filesystem access, API crede
 
 ## 2. Choose transcription and editing tools
 
-If the user has not chosen, ask whether they want an API transcription provider, a local WhisperX workflow, or a recommendation. Use [transcription-models.md](references/transcription-models.md) to check current candidates and current vendor documentation. Never claim one model is the universal best for Moroccan Darija without evidence from comparable audio.
+If the user has not chosen, ask whether they prefer an API model, a local model they already have, a local setup recommendation (with installation optional), or help choosing. Use [transcription-models.md](references/transcription-models.md) to compare current options. Never claim one model is the universal best for Moroccan Darija without evidence from comparable audio.
+
+For a local route, first find out whether a local ASR app/model is already installed and whether this assistant can reach it (for example, through a local command or endpoint). If the current assistant can inspect the computer, use read-only discovery to identify the OS/architecture, available RAM, GPU and VRAM when applicable, free disk space, and installed ASR runtimes/models. Do not start model inference as part of discovery. If this assistant cannot inspect the machine, ask the user for those details and the app/model name. Check the chosen model's current requirements against that machine; do not use one fixed hardware threshold for every model.
+
+Offer a local install only after explaining the model, runtime, approximate download/storage needs, and any platform constraints. Ask explicitly before installing packages or downloading model weights. Prefer an isolated environment and avoid administrator-level changes. A local model downloads from its publisher, but inference can stay on the user's computer; confirm that the selected tool does not upload audio. If the user declines installation, use an already-installed model, offer a smaller compatible local option, or continue with an API route only if they choose it. Never upload audio to a cloud provider as a silent fallback.
 
 If the editor is not clear, ask whether they want HyperFrames or Remotion. WhisperX handles local transcription and/or alignment; it does not replace the video editor. An API model writes words; an acoustic aligner supplies word positions when those are not reliable from the transcription response.
 
-Ask before incurring paid API usage or installing substantial local dependencies. Use only credentials the user has authorized, through the provider’s supported secret storage. Never ask them to paste a key into chat or write a key to project files.
+Ask before incurring paid API usage, uploading private audio to a new provider, or installing local dependencies/model weights. Use only credentials the user has authorized, through the provider’s supported secret storage. Never ask them to paste a key into chat or write a key to project files.
 
 ## 3. Inspect and protect the project
 

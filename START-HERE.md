@@ -21,7 +21,7 @@ If the assistant or tool does not have access to local files, Python, FFmpeg, a 
 
 ## 2. Which transcription route?
 
-Ask whether they prefer an API provider, a local workflow, or a recommendation. If they want a recommendation, consult [`skills/moroccan-darija-captions/references/transcription-models.md`](skills/moroccan-darija-captions/references/transcription-models.md), check current official docs, and compare current candidates on representative Darija and code-switched audio. Include accuracy, word timing, language fit, privacy, cost, and available credentials in the recommendation.
+Ask whether they prefer an API provider, a local model they already have, an optional local installation if their machine supports it, or a recommendation. For local use, check installed runtimes and hardware first; explain the model, platform fit, and storage/download needs, then get consent before installing software or model weights. If they want a recommendation, consult [`skills/moroccan-darija-captions/references/transcription-models.md`](skills/moroccan-darija-captions/references/transcription-models.md), check current official docs, and compare candidates on representative Darija and code-switched audio. Include accuracy, word timing, language fit, privacy, cost, and available credentials in the recommendation.
 
 Do not present a permanent “best in the world” ranking. The right choice depends on the specific clip, model access, and whether transcript or word timing is more important. Ask before spending money on a model comparison.
 

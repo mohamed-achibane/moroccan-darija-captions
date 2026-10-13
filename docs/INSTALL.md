@@ -2,6 +2,8 @@
 
 This repository provides a shared router skill plus one platform entry skill for Codex, ChatGPT, Claude, and Gemini. Install the router and the matching entry skill together so the latter can load the shared workflow.
 
+The workflow supports API transcription and local inference. It should first check whether a suitable local model is already installed. If it proposes installing one, it checks the actual operating system, hardware, runtime, and storage needs, then asks before downloading packages or model weights. A local install is optional; API use is a separate choice.
+
 ## Codex
 
 Install `moroccan-darija-captions` and `moroccan-darija-captions-codex` from this repository into Codex. With the Skills CLI, the command format is:

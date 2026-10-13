@@ -11,19 +11,19 @@ The assistant, transcription service, and video editor are separate choices:
 | First choose | Options |
 |---|---|
 | Assistant ecosystem | Codex, ChatGPT app, Claude, or Gemini |
-| Speech recognition | A current API model, or a local WhisperX workflow |
+| Speech recognition | A current API model, an already-installed local model, or an optional local model installation after a hardware check |
 | Video editor | HyperFrames or Remotion |
 
 Start with [`START-HERE.md`](START-HERE.md). If the assistant is missing this information, the router skill asks which ecosystem you use, then points to its dedicated skill. The platform skills are in [`skills/`](skills/).
 
 ## How it works
 
-1. **Transcribe:** choose a current model that supports the languages and workflow you need. No vendor is declared the universal winner; model names, features, and prices change.
+1. **Transcribe:** choose a current API model or a local model that fits the user's computer. The skill can check for existing local runtimes, assess hardware before recommending a model download, and ask before installing. No vendor is declared the universal winner; model names, features, and prices change.
 2. **Review and align:** check the full transcript against the audio. Use the provider’s word timestamps when reliable; otherwise use an acoustic aligner such as WhisperX, then inspect uncertain words and boundaries.
 3. **Compose:** choose HyperFrames or Remotion. Keep the original video, audio, and opening title intact unless the user requests a different edit.
 4. **Review and deliver:** review the opening, a mixed-script passage, and the ending. Provide the editable project and a fresh MP4 when requested and authorized.
 
-WhisperX is a local Whisper-based transcription and forced-alignment workflow; it is not interchangeable with an API transcription model. A text model writes the words; an aligner estimates where those reviewed words occur in the audio.
+Local candidates include Darija-focused MoulSot and multilingual Whisper models through runtimes such as faster-whisper; WhisperX can transcribe locally and align a reviewed transcript. Local inference does not mean local installation is automatic: the skill checks compatibility and asks before installing packages or downloading weights. A text model writes the words; an aligner estimates where those reviewed words occur in the audio.
 
 ## Install
 
