@@ -1,6 +1,6 @@
 # Choosing a transcription and alignment route
 
-Model names and capabilities change. When making a recommendation, check each provider’s current official model and language pages. Treat the options below as candidates to evaluate, not a fixed ranking or guarantee of Moroccan Darija accuracy.
+Model names and capabilities change. When making a recommendation, check each provider’s current official model and language pages. Treat the options below as candidates to evaluate, not a fixed ranking or guarantee of Moroccan Darija accuracy. The assistant ecosystem and the speech provider are separate: using Claude, Gemini, ChatGPT, or Codex does not by itself prove a matching transcription endpoint or credential is available.
 
 ## Candidate routes
 
@@ -8,6 +8,7 @@ Model names and capabilities change. When making a recommendation, check each pr
 |---|---|---|
 | OpenAI API | Current recommended file-transcription model; current docs distinguish it from the `whisper-1` path for word timestamps. | Test Darija and code-switch recognition. If the chosen transcript model does not return reliable word times, align it separately. [Transcription docs](https://developers.openai.com/api/docs/guides/transcription) |
 | Google Gemini API | `gemini-3.5-transcribe` provides verbatim mode and optional word timestamp granularity; automatic language detection supports code-switching. | Test Darija script and French/English switches. Word timestamps can reduce transcription accuracy; custom vocabulary cannot be combined with word timestamps. [Gemini transcription docs](https://ai.google.dev/gemini-api/docs/transcribe) |
+| Anthropic Claude | Offer Claude as a speech recognizer only if current official Anthropic docs confirm a suitable audio-transcription endpoint for the active surface. | Do not confuse Claude as the assistant, mobile voice input, or audio understanding with a documented file-transcription API or word aligner. If no endpoint is documented, offer a discovered local model or a named external ASR provider with separate upload/cost consent. [Anthropic documentation](https://docs.anthropic.com/) |
 | Microsoft Foundry Speech | `MAI-Transcribe-2` documents verbatim output, code-switching, automatic language ID, and word timestamps; public preview status and language/region access can change. | Confirm current `ar-MA` support, preview availability, region, and whether the exact mixed audio is handled well. [MAI-Transcribe docs](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/mai-transcribe), [language support](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support) |
 | AssemblyAI | Current Universal pre-recorded models document broad language coverage and code-switching; the current Pro line’s listed language coverage changes over time. | Verify pre-recorded model coverage for Arabic, French, and English, and test Moroccan dialect/script. Check the API response’s timing granularity. [Models](https://www.assemblyai.com/docs/getting-started/models) |
 | Deepgram | Nova-3 lists Arabic Morocco (`ar-MA`) and provides general-purpose speech recognition. | The documented multilingual mode may list a different language set from the Arabic locale route. Check the current language page and test mixed Arabic/French/English rather than assuming code-switch behavior. [Models and languages](https://developers.deepgram.com/docs/models-languages-overview/) |
@@ -19,13 +20,15 @@ Other providers can be added when their current official documentation confirms 
 
 ## Selection method
 
+Before asking the user to choose a route, follow the shared [`intake.md`](intake.md) and perform its scoped, read-only inventory. Check credential presence only; never expose secret values. A detected key indicates possible access only; it is not authorization to upload audio or spend money.
+
 When the user asks for the best option:
 
-1. Ask their constraints: an existing local model, OS and hardware, data privacy, local vs cloud, cost, time, word timestamps, and whether they want to test a short excerpt.
-2. For local use, inspect available hardware and installed runtimes without running inference. Check the current model card and runtime requirements for the exact model, quantization, and operating system; estimate storage before offering a download.
+1. Base the recommendation on discovered local models, hardware, credential availability, and constraints already stated by the user. Ask once about any remaining privacy, cost, or timing tradeoffs.
+2. For local use, use the discovered hardware and installed runtimes without running inference. Check the current model card and runtime requirements for the exact model, quantization, and operating system; state package and model sizes before requesting install/download consent.
 3. Check current official/provider docs for model IDs, supported languages/locales, timestamp granularity, code-switch claims, file limits, availability, and pricing. Do not expose provider keys.
 4. Offer a short list of suitable candidates with specific tradeoffs for Arabic/Moroccan dialect plus French/English. Avoid vendor accuracy claims unless they apply to a comparable test.
-5. Ask before installing packages or model weights, spending money, or uploading private audio to a new provider. If authorized, compare a representative excerpt containing Darija, French, English, names, and language switches.
+5. Include the named provider, audio being uploaded, estimated cost/cap, and any packages/model weights plus sizes in the one-time intake. Do not install or spend money without the user's explicit answer. If authorized, compare a representative excerpt containing Darija, French, English, names, and language switches within the approved cost cap.
 6. Review candidate transcripts against the audio. Compare word omissions/substitutions, script choice, fillers, named terms, language switches, and timestamp reliability. A vendor's generic benchmark is not proof of performance on this speaker.
 7. Choose transcription and alignment independently. A local text model such as MoulSot can be paired with WhisperX or another compatible aligner; a local Whisper runtime may provide word estimates, which still need review.
 

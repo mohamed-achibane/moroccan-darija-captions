@@ -9,13 +9,9 @@ Created by **Mohamed Achibane**. Official links: [LinkedIn](https://www.linkedin
 
 Use this skill to guide a complete, reviewable caption edit. Keep assistant ecosystem, transcription provider, and video editor as separate choices.
 
-## 1. Identify the user’s ecosystem first
+## 1. Resolve the platform and inspect capabilities
 
-If the user has not already said which one they use, ask:
-
-> Which assistant are you using: Codex, the ChatGPT app, Claude, or Gemini? If Gemini, do you mean Gemini CLI or the Gemini app/web?
-
-Read only the matching adapter before continuing:
+The invoked entry skill or current assistant surface usually identifies the ecosystem. Do not ask the user to name an ecosystem already established by the environment. Read the matching adapter before continuing:
 
 - Codex: [platforms/codex.md](references/platforms/codex.md)
 - ChatGPT app: [platforms/chatgpt.md](references/platforms/chatgpt.md)
@@ -24,17 +20,9 @@ Read only the matching adapter before continuing:
 
 Do not assume that one product’s skill installer, filesystem access, API credentials, or rendering tools exist in another product.
 
-## 2. Choose transcription and editing tools
+Before asking for preferences, follow the single [intake and discovery workflow](references/intake.md). Perform the scoped, read-only inventory of relevant local ASR/alignment models, editor/render capabilities, and safe credential availability first; check credential presence only and never reveal secret values. Then present the findings and ask once about any missing transcription, alignment, upload/cost, installation, destination/editor, and end-to-end authorization choices. Skip choices already answered in the request or project. Do not make a paid API request, upload media, install packages, or download weights until the intake explicitly authorizes that named action.
 
-If the user has not chosen, ask whether they prefer an API model, a local model they already have, a local setup recommendation (with installation optional), or help choosing. Use [transcription-models.md](references/transcription-models.md) to compare current options. Never claim one model is the universal best for Moroccan Darija without evidence from comparable audio.
-
-For a local route, first find out whether a local ASR app/model is already installed and whether this assistant can reach it (for example, through a local command or endpoint). If the current assistant can inspect the computer, use read-only discovery to identify the OS/architecture, available RAM, GPU and VRAM when applicable, free disk space, and installed ASR runtimes/models. Do not start model inference as part of discovery. If this assistant cannot inspect the machine, ask the user for those details and the app/model name. Check the chosen model's current requirements against that machine; do not use one fixed hardware threshold for every model.
-
-Offer a local install only after explaining the model, runtime, approximate download/storage needs, and any platform constraints. Ask explicitly before installing packages or downloading model weights. Prefer an isolated environment and avoid administrator-level changes. A local model downloads from its publisher, but inference can stay on the user's computer; confirm that the selected tool does not upload audio. If the user declines installation, use an already-installed model, offer a smaller compatible local option, or continue with an API route only if they choose it. Never upload audio to a cloud provider as a silent fallback.
-
-If the editor is not clear, ask whether they want HyperFrames or Remotion. WhisperX handles local transcription and/or alignment; it does not replace the video editor. An API model writes words; an acoustic aligner supplies word positions when those are not reliable from the transcription response.
-
-Ask before incurring paid API usage, uploading private audio to a new provider, or installing local dependencies/model weights. Use only credentials the user has authorized, through the provider’s supported secret storage. Never ask them to paste a key into chat or write a key to project files.
+Use [transcription-models.md](references/transcription-models.md) and current official documentation to recommend a suitable route for this clip. The assistant ecosystem is not automatically the speech provider. WhisperX is a possible local aligner, not a video editor; keep transcription and acoustic alignment as separate decisions.
 
 ## 3. Inspect and protect the project
 
@@ -86,11 +74,11 @@ Core behavior:
 
 1. Use the chosen editor’s documented project structure: HyperFrames composition and generator, or Remotion React composition.
 2. Keep transcript, timing, generator, and editable project consistent. Use the project’s source of truth and project scripts rather than embedding one clip’s text and times as special cases.
-3. Before a build, browser preview, or render, follow the current project’s authorization instructions. A request for one action does not automatically authorize unrelated checks or a paid model comparison.
+3. Follow project authorization instructions. Explicit end-to-end consent in the intake covers only the named checks, preview, build, and render for this video; do not ask again for those same actions. It does not authorize a different provider, extra costs, new installs, destructive work, or unrelated changes.
 4. Review the opening/title, a mixed-language passage, and later captions in the actual editor preview when authorized. Check script direction, font rendering, row separation, highlight timing, face/title clearance, stable placement, and preserved source media.
 
 ## 9. Deliver and report
 
-When requested and authorized, create a fresh MP4 from the reviewed editable project. Inspect the final video and audio streams using available project tools. Provide the editable project and render at the requested location.
+When the user requested or authorized a fresh MP4 in the intake, create it from the reviewed editable project and inspect the final video and audio streams using available project tools. Provide the editable project and render at the requested location.
 
 State what actually happened: transcript review, alignment method, editor, preview/build/render status, dimensions/duration/audio verification, and any unresolved words or unavailable tools. Never claim a check or render that did not run. Do not commit or push MP4s, preview encodes, or frame sequences unless the user explicitly requests that action for that specific output.

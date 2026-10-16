@@ -1,14 +1,8 @@
 # Start here
 
-Before setting up a captioning workflow, identify three independent choices. Ask about any choice the user has not already made.
+Use the entry skill for the assistant environment already in use. Do not ask the user to identify an ecosystem that is clear from the active skill or environment. Ask whether they mean Gemini CLI or Gemini app/web, or Claude Code or Claude app/web, only when the current surface cannot be determined.
 
-## 1. Which assistant ecosystem?
-
-Ask:
-
-> Which assistant are you using: Codex, the ChatGPT app, Claude, or Gemini? If you mean Gemini, are you using Gemini CLI or the Gemini app/web?
-
-Then follow the matching entry skill:
+Follow the matching entry skill:
 
 | Answer | Skill |
 |---|---|
@@ -17,18 +11,12 @@ Then follow the matching entry skill:
 | Claude | [`skills/moroccan-darija-captions-claude/SKILL.md`](skills/moroccan-darija-captions-claude/SKILL.md) |
 | Gemini | [`skills/moroccan-darija-captions-gemini/SKILL.md`](skills/moroccan-darija-captions-gemini/SKILL.md) |
 
-If the assistant or tool does not have access to local files, Python, FFmpeg, a browser, or a renderer, state that limitation and offer the parts it can complete. Do not imply that a chat-only assistant has rendered a local video.
+If the assistant or tool does not have access to local files, Python, FFmpeg, a browser, or a renderer, state that limitation. Do not imply that a chat-only assistant has inspected the user's computer or rendered a local video.
 
-## 2. Which transcription route?
+## Start every video task with discovery
 
-Ask whether they prefer an API provider, a local model they already have, an optional local installation if their machine supports it, or a recommendation. For local use, check installed runtimes and hardware first; explain the model, platform fit, and storage/download needs, then get consent before installing software or model weights. If they want a recommendation, consult [`skills/moroccan-darija-captions/references/transcription-models.md`](skills/moroccan-darija-captions/references/transcription-models.md), check current official docs, and compare candidates on representative Darija and code-switched audio. Include accuracy, word timing, language fit, privacy, cost, and available credentials in the recommendation.
+Before asking for provider or editor choices, follow [`skills/moroccan-darija-captions/references/intake.md`](skills/moroccan-darija-captions/references/intake.md). Use a scoped, read-only inventory to identify available local transcription/alignment models and runtimes, relevant provider-credential availability, computer fit for any proposed local setup, and accessible editors/renderers. Do not run model inference, upload media, make a paid API call, install packages, or download weights during discovery. Check credential presence only; never reveal secret values.
 
-Do not present a permanent “best in the world” ranking. The right choice depends on the specific clip, model access, and whether transcript or word timing is more important. Ask before spending money on a model comparison.
+Show the user what was found, recommend a route based on the current official provider docs, then ask once for any missing choices: transcription provider, word-alignment fallback, permission to upload audio or spend up to a stated amount, permission to install named packages/models, project/editor destination, full-task check/build/preview/render authorization, and what to do with unresolved words. Skip choices already answered in the prompt or existing project.
 
-## 3. Which editor?
-
-Ask whether they want HyperFrames or Remotion if this is not already clear. Do not treat WhisperX as an editor: use it for local transcription/alignment, then render with the chosen video tool.
-
-## Continue
-
-Read [`skills/moroccan-darija-captions/SKILL.md`](skills/moroccan-darija-captions/SKILL.md) for the shared workflow. Keep the user's source media safe, review the complete transcript, and check the final rendered output only when the current task authorizes those actions.
+After the user confirms, carry those answers through the named task without repeating the same approval request at every stage. Stop only if a new action exceeds the agreed provider, cost, install, or render scope, or a material transcript ambiguity needs the user. Keep the source media unchanged and never invent words or timings.

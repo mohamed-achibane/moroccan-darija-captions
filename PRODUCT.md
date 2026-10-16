@@ -6,7 +6,7 @@ Help creators produce accurate, reviewable Moroccan Darija captions for vertical
 
 ## Users and entry points
 
-- Codex users, ChatGPT app users, Claude users, and Gemini users choose the entry skill for the environment they are using.
+- Codex users, ChatGPT app users, Claude users, and Gemini users choose the entry skill for the environment they are using. The entry skill identifies the assistant ecosystem; it does not automatically select a speech provider.
 - Gemini users distinguish Gemini CLI from the Gemini app/web; Claude users distinguish Claude Code from the Claude app/web.
 - Each user chooses speech recognition and the video editor independently of the assistant ecosystem.
 
@@ -20,6 +20,8 @@ Help creators produce accurate, reviewable Moroccan Darija captions for vertical
 ## Quality and safety rules
 
 - Review the complete clip, including the opening, language switches, and ending. Mark uncertainty instead of fabricating a word or timestamp.
+- Before asking workflow preferences, perform a scoped, read-only inventory of available local ASR/alignment resources, relevant provider credential availability, and editor/render tools. Check credential presence only; never reveal secret values or treat a detected credential as consent to upload media or spend money.
+- Ask all unanswered provider, alignment, data/cost, installation, delivery, and task-completion authorization choices together once. Carry explicit consent through the named video task; do not repeat approvals for the same authorized actions.
 - Treat model language support as a candidate signal, not proof of Moroccan Darija accuracy. Compare current documented options on representative audio when requested.
 - Keep API credentials in the chosen provider’s supported secret store. Never put credentials or private source media in GitHub.
 - The house style is a selectable default. Use the creator’s requested font, layout, and motion when they differ.

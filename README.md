@@ -16,7 +16,7 @@ Created with love by **Mohamed Achibane**. These are the creator’s official pr
 
 ## Choose your setup
 
-The assistant, transcription service, and video editor are separate choices:
+The assistant, transcription service, and video editor are separate choices. The active entry skill identifies the assistant ecosystem; it does not select the transcription provider:
 
 | First choose | Options |
 |---|---|
@@ -24,14 +24,15 @@ The assistant, transcription service, and video editor are separate choices:
 | Speech recognition | A current API model, an already-installed local model, or an optional local model installation after a hardware check |
 | Video editor | HyperFrames or Remotion |
 
-Start with [`START-HERE.md`](START-HERE.md). If the assistant is missing this information, the router skill asks which ecosystem you use, then points to its dedicated skill. The platform skills are in [`skills/`](skills/).
+Start with [`START-HERE.md`](START-HERE.md). The matching entry skill performs a scoped, read-only inventory before asking one consolidated intake about missing route, consent, and delivery choices. The platform skills are in [`skills/`](skills/).
 
 ## How it works
 
-1. **Transcribe:** choose a current API model or a local model that fits the user's computer. The skill can check for existing local runtimes, assess hardware before recommending a model download, and ask before installing. No vendor is declared the universal winner; model names, features, and prices change.
-2. **Review and align:** check the full transcript against the audio. Use the provider’s word timestamps when reliable; otherwise use an acoustic aligner such as WhisperX, then inspect uncertain words and boundaries.
-3. **Compose:** choose HyperFrames or Remotion. Keep the original video, audio, and opening title intact unless the user requests a different edit.
-4. **Review and deliver:** review the opening, a mixed-script passage, and the ending. Provide the editable project and a fresh MP4 when requested and authorized.
+1. **Discover and choose:** inspect available local ASR/alignment tools and safe provider-credential availability, then recommend a current route for the clip. Ask once about cloud audio upload and a cost cap, local model installs/downloads, editor/output, and permission to complete the requested checks, preview, build, and render. A key's presence alone does not authorize its use.
+2. **Transcribe:** use the selected current API model or local model that fits the user's computer. No vendor is declared the universal winner; model names, features, and prices change.
+3. **Review and align:** check the full transcript against the audio. Use the provider’s word timestamps when reliable; otherwise use an authorized acoustic aligner such as WhisperX, then inspect uncertain words and boundaries.
+4. **Compose:** use the selected HyperFrames or Remotion project. Keep the original video, audio, and opening title intact unless the user requests a different edit.
+5. **Review and deliver:** review the opening, a mixed-script passage, and the ending. Provide the editable project and a fresh MP4 when requested or authorized in the one-time intake.
 
 Local candidates include Darija-focused MoulSot and multilingual Whisper models through runtimes such as faster-whisper; WhisperX can transcribe locally and align a reviewed transcript. Local inference does not mean local installation is automatic: the skill checks compatibility and asks before installing packages or downloading weights. A text model writes the words; an aligner estimates where those reviewed words occur in the audio.
 
@@ -74,6 +75,7 @@ Users can choose a different font, size, position, grouping, or color. The skill
 | `skills/moroccan-darija-captions-claude/` | Claude-specific entry skill. |
 | `skills/moroccan-darija-captions-gemini/` | Gemini-specific entry skill. |
 | `skills/moroccan-darija-captions/references/transcription-models.md` | Model selection, timing, and current-doc checks. |
+| `skills/moroccan-darija-captions/references/intake.md` | Discovery-first, ecosystem-aware one-time questions and consent scope. |
 | `skills/moroccan-darija-captions/references/transcript-schema.md` | Normalized word and phrase-group data format. |
 | `skills/moroccan-darija-captions/scripts/validate_transcript.py` | Read-only structural validation for normalized transcript JSON. |
 | `docs/INSTALL.md` | Installation and capability notes for each ecosystem. |

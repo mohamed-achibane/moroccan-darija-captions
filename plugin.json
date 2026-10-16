@@ -31,7 +31,7 @@
           "Build vertical video captions"
         ],
         "defaultPrompt": [
-          "Use Moroccan Darija Captions. If the assistant ecosystem is unclear, ask whether I use Codex, ChatGPT, Claude, or Gemini."
+          "Use Moroccan Darija Captions. Identify the assistant ecosystem from the active environment and do not ask me to repeat it. Before asking preferences, perform a scoped read-only inventory of available local transcription/alignment models, relevant provider credential availability, and editor/render tools without revealing secret values. Then show the findings and ask once for any missing speech route, alignment fallback, audio-upload and cost consent, named package/model install consent, project destination, and full-task checks/build/preview/render authorization. Skip answers already in my request or project, then complete the authorized video task without repeating those approvals."
         ]
       }
     }
