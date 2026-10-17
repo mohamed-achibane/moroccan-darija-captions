@@ -30,7 +30,7 @@ Start with [`START-HERE.md`](START-HERE.md). The matching entry skill performs a
 
 1. **Discover and choose:** inspect available local ASR/alignment tools and safe provider-credential availability, then recommend a current route for the clip. Ask once about cloud audio upload and a cost cap, local model installs/downloads, editor/output, and permission to complete the requested checks, preview, build, and render. A key's presence alone does not authorize its use.
 2. **Transcribe:** use the selected current API model or local model that fits the user's computer. No vendor is declared the universal winner; model names, features, and prices change.
-3. **Review and align:** optionally compare flagged spans with an independent ASR pass using [`automated-first-pass.md`](skills/moroccan-darija-captions/references/automated-first-pass.md). Keep candidate wording separate from the transcript and propose timing changes only for exact agreement runs. Then check the full transcript against the audio using the local workflow in [`listening-review.md`](skills/moroccan-darija-captions/references/listening-review.md). A model or aligner is never reported as a human listener.
+3. **Review and align:** optionally compare flagged spans with an independent ASR pass using [`automated-first-pass.md`](skills/moroccan-darija-captions/references/automated-first-pass.md). Merge disagreements into the listening queue at the complete phrase-group level, keep candidate wording separate from the transcript, and propose timing changes only for trusted wording. Check alignment chunk seams and use overlapping context when creating chunked timings. Then check the full transcript against the audio using the local workflow in [`listening-review.md`](skills/moroccan-darija-captions/references/listening-review.md). A model or aligner is never reported as a human listener.
 4. **Compose:** use the selected HyperFrames or Remotion project. Keep the original video, audio, and opening title intact unless the user requests a different edit.
 5. **Review and deliver:** review the opening, a mixed-script passage, and the ending. Provide the editable project and a fresh MP4 when requested or authorized in the one-time intake.
 
@@ -79,7 +79,7 @@ Users can choose a different font, size, position, grouping, or color. The skill
 | `skills/moroccan-darija-captions/references/listening-review.md` | Honest, human-led listening review, model-review labeling, and completion rules. |
 | `skills/moroccan-darija-captions/references/transcript-schema.md` | Normalized word and phrase-group data format. |
 | `skills/moroccan-darija-captions/scripts/validate_transcript.py` | Read-only structural validation for normalized transcript JSON. |
-| `skills/moroccan-darija-captions/scripts/prepare_listening_review.py` | Builds a local review page and cue manifest from a word-timed transcript. |
+| `skills/moroccan-darija-captions/scripts/prepare_listening_review.py` | Builds a local phrase-aware review page, merging score, timing, seam, and optional independent-ASR disagreement cues. |
 | `skills/moroccan-darija-captions/scripts/automated_first_pass.py` | Sends only authorized, flagged audio windows to OpenAI and records alternative wording without editing the transcript. |
 | `skills/moroccan-darija-captions/scripts/propose_consensus_timings.py` | Uses already-cached WhisperX models offline to suggest timings for exact ASR-consensus runs. |
 | `skills/moroccan-darija-captions/references/automated-first-pass.md` | Consent, model comparison, conservative timing proposal, and honest-reporting workflow. |
@@ -91,6 +91,7 @@ Users can choose a different font, size, position, grouping, or color. The skill
 - Use only credentials the user has authorized. Keep keys in the provider’s supported secret store or environment, never in prompts, transcripts, source control, or logs.
 - A model’s language list does not prove its accuracy on Moroccan Darija or code-switching. Review the complete transcript and keep human listening distinct from model-assisted audits.
 - `skills/moroccan-darija-captions/scripts/prepare_listening_review.py` makes a local word-by-word review page and separate decision ledger. It requires Python and FFmpeg, makes no API calls, and never edits the source transcript.
+- Any flagged word promotes its complete natural phrase group; an independent-ASR mismatch promotes the complete group even if some word scores are above the selected cutoff. These are listening priorities, never automatic transcript corrections.
 - Do not invent word timings. If an aligner cannot place a word reliably, mark it for review.
 - Respect the current project’s checks, build, browser, and render authorization rules. Never commit or push rendered video unless specifically requested for that video.
 

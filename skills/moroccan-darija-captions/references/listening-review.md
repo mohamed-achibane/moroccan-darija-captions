@@ -25,10 +25,29 @@ python3 skills/moroccan-darija-captions/scripts/prepare_listening_review.py \
 
 The score threshold is a caller choice, not a universal accuracy cutoff. The helper writes a local MP3 audio copy, `review.html`, and `review-queue.json`. Open `review.html` in a local browser; if the browser blocks a `file://` audio source, serve that folder on loopback only and open the local URL. The page starts with flagged words but can show every word. Use **Play word with context** at normal speed first; use 0.8× only to resolve a difficult boundary. Listen to a phrase at normal speed again before confirming a correction. Use the neighboring words to preserve Darija morphology, fillers, repetitions, and language switches.
 
+When an independent ASR comparison exists, pass it into the same queue:
+
+```sh
+python3 skills/moroccan-darija-captions/scripts/prepare_listening_review.py \
+  --transcript /path/to/project/captions/transcript.json \
+  --audio /path/to/project/media/source-video.mov \
+  --automated-review /path/to/task-work/automated-first-pass/automated-review.json \
+  --output /path/to/task-work/listening-review-with-asr \
+  --flag-below 0.5 \
+  --flag-group-overlaps \
+  --flag-alignment-seams
+```
+
+The queue promotes every word in a phrase group when any member has a low score, invalid timing, boundary overlap, or alignment-seam cue. With an automated report, it also compares complete source phrase groups covered by each ASR window and promotes every word in a group whose sequence disagrees. The page shows the source phrase and a localized candidate excerpt with its model labelled clearly as unverified output. A neighboring agreement cannot make a disputed group safe automatically; listen to the complete group, including every word whose score sits just above the cutoff. Groups cut off by an ASR window edge are not compared as if they were complete.
+
+For chunked alignments, use overlapping audio context between neighboring chunks when producing new timings. Compare the shared words and keep all times on the original clip clock. When only non-overlapping chunk metadata is available, `--flag-alignment-seams` promotes words near those boundaries so the listener can check for jumps or early captions. The seam radius is a review heuristic, not an accuracy threshold.
+
 For each word, record two separate decisions:
 
 - **Wording:** confirmed, corrected, or uncertain.
 - **Timing:** confirmed, corrected, or uncertain.
+
+Review all words in each flagged phrase group together. A phrase-level flag means “listen to this unit,” not that each word is wrong. Keep independent ASR text visible as a suggestion only. Confirm wording and timing against the audio separately; do not use the ASR candidate itself as a correction or timing anchor until the wording is trusted.
 
 Add a short note for corrections or unresolved items. Export the decision ledger from the page. Review the ledger before applying any changes to the transcript source. Apply only confirmed corrections to the transcript and rerun alignment on corrected phrases; do not shift the full timeline to fix a local issue. Keep the audio original and read-only.
 

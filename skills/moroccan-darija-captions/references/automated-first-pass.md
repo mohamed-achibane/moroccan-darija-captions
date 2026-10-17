@@ -37,9 +37,24 @@ Review each flagged phrase against the independent model output:
 
 Token normalization is only for comparison. Preserve the original Darija spelling, script, punctuation, fillers, repetitions, and word order. A spelling variation may be a real dialect choice, so do not normalize it into the source transcript.
 
+Merge this report into the local listening queue before review:
+
+```sh
+python3 skills/moroccan-darija-captions/scripts/prepare_listening_review.py \
+  --transcript /path/to/project/captions/transcript.json \
+  --audio /path/to/project/media/source-video.mov \
+  --automated-review /path/to/task-work/automated-first-pass/automated-review.json \
+  --output /path/to/task-work/listening-review-with-asr \
+  --flag-below 0.5 \
+  --flag-group-overlaps \
+  --flag-alignment-seams
+```
+
+This step compares complete phrase groups covered by each ASR window. If any word differs, the queue includes every word in that source phrase, even when some aligner scores exceed the selected threshold. The page presents the transcript phrase beside a localized ASR candidate excerpt as unverified machine output. Never accept the candidate wording, or infer a timing correction from it, without checking the complete phrase against the audio. Partial groups at a window edge are skipped rather than treated as a reliable comparison.
+
 ## Propose timing refinements
 
-If an already authorized acoustic aligner is available, align only consecutive source words that match the independent transcript exactly. Keep language-specific spans separate when the aligner requires it. Use a narrow audio crop around the existing local timing so the aligner cannot jump to another occurrence elsewhere in the clip.
+If an already authorized acoustic aligner is available, align only trusted wording. Exact agreement between recognizers can prioritize a timing candidate but does not prove the source wording. Keep language-specific spans separate when the aligner requires it. Use a narrow audio crop around the existing local timing so the aligner cannot jump to another occurrence elsewhere in the clip. For long transcript alignment, give adjacent audio chunks overlapping context, compare the shared words, and preserve the original clip clock. Flag seams from older non-overlapping chunks for listening review.
 
 The bundled WhisperX helper is optional and offline-only. It requires an existing installation and cached alignment models; it does not install packages or download weights:
 
@@ -52,7 +67,7 @@ python3 skills/moroccan-darija-captions/scripts/propose_consensus_timings.py \
   --output /path/to/task-work/automated-first-pass/timing-suggestions.json
 ```
 
-The helper writes suggestions only. It requires an exact, complete aligner word sequence, positive times inside the local crop, a caller-selected confidence improvement, a bounded local shift, and no newly introduced neighboring-word collision before labeling a candidate. These thresholds are guardrails, not universal measures of accuracy. If a model is missing, offline loading should fail; ask before installing or downloading it.
+The helper writes suggestions only. It requires an exact, complete aligner word sequence, positive times inside the local crop, a caller-selected confidence improvement, a bounded local shift, and no newly introduced neighboring-word collision before labeling a candidate. These thresholds are guardrails, not universal measures of accuracy. A proposed time still needs acoustic review, especially near a chunk seam. If a model is missing, offline loading should fail; ask before installing or downloading it.
 
 If no local aligner is authorized or available, use provider word timestamps only when the timed ASR's exact word sequence matches the transcript. Do not transfer fuzzy or shifted Whisper-1 timestamps onto another model's words. If the provider cannot time the trusted text, leave timing pending instead of guessing.
 
