@@ -20,7 +20,7 @@ The invoked entry skill or current assistant surface usually identifies the ecos
 
 Do not assume that one product’s skill installer, filesystem access, API credentials, or rendering tools exist in another product.
 
-Before asking for preferences, follow the single [intake and discovery workflow](references/intake.md). Perform the scoped, read-only inventory of relevant local ASR/alignment models, editor/render capabilities, and safe credential availability first; check credential presence only and never reveal secret values. Then present the findings and ask once about any missing transcription, alignment, upload/cost, installation, destination/editor, and end-to-end authorization choices. Skip choices already answered in the request or project. Do not make a paid API request, upload media, install packages, or download weights until the intake explicitly authorizes that named action.
+Before asking for preferences, follow the single [intake and discovery workflow](references/intake.md). Perform the scoped, read-only inventory of relevant local ASR/alignment models, editor/render capabilities, and safe credential availability first; check credential presence only and never reveal secret values. Then present the findings and ask once about any missing transcription, alignment, upload/cost, installation, destination/editor, end-to-end authorization, caption word-count, and caption-color choices. Default to one word at a time and the house-style color when the user gives no preference. Skip choices already answered in the request or project. Do not make a paid API request, upload media, install packages, or download weights until the intake explicitly authorizes that named action.
 
 Use [transcription-models.md](references/transcription-models.md) and current official documentation to recommend a suitable route for this clip. The assistant ecosystem is not automatically the speech provider. WhisperX is a possible local aligner, not a video editor; keep transcription and acoustic alignment as separate decisions.
 
@@ -53,7 +53,7 @@ Use [transcription-models.md](references/transcription-models.md) and current of
 Use the project’s existing schema. If no schema exists, follow [transcript-schema.md](references/transcript-schema.md): record clip duration, ordered words with `index`, `start`, `end`, visible transcript text, and script-aware parts, plus phrase groups that reference consecutive word indices. The bundled `scripts/validate_transcript.py` checks structure only; it does not prove that transcription or timing matches the audio.
 
 - Store words in their natural logical order. Never reverse Arabic text, word arrays, or timing arrays to create RTL movement.
-- Keep natural phrase-sized groups in the source transcript even when the on-screen window uses two consecutive words.
+- Keep natural phrase-sized groups in the source transcript. Display grouping is a separate user choice and never changes transcript grouping.
 - Keep language and direction explicit: Arabic parts use `lang="ar"` and `dir="rtl"`; French and English parts use `dir="ltr"` and their language code.
 - Preserve source spelling, case, and punctuation in transcript data. Apply uppercase Latin display or punctuation removal only at render time when requested.
 - Update the transcript source and all derived timing tables together. Do not hand-edit generated markup as the only durable change.
@@ -65,9 +65,12 @@ Apply the user’s supplied style. If they want the included preset, read [house
 Core behavior:
 
 - Caption the full clip, including speech under an opening title.
+- By default, show exactly one currently spoken word at a time. Use the user's chosen caption color or the house-style default.
+- Ask whether the user prefers one word at a time or two consecutive words at a time. In the optional two-word mode, show the active word and its immediately following word; use the selected color for the active word and the house-style secondary color for the following word unless the user specifies otherwise.
+- A one-word display still requires word-level timing. If a provider supplies a multiword segment, use an authorized acoustic alignment/review to obtain word boundaries or flag it for review; do not split its duration evenly or guess timestamps.
 - Keep Arabic in logical RTL order. Isolate each French/English run in an LTR element so bidirectional text renders in the correct order.
 - Keep Latin text on a dedicated row separate from Arabic when the user chooses that layout.
-- For the included two-word style, show two consecutive words and highlight only the currently spoken word. Keep phrase groups and word timing intact in the source.
+- Keep caption cues mutually exclusive so words from a previous cue do not remain on screen when the next cue appears.
 - Keep rows and baselines stable. Do not reverse, jump, swap, or animate words across each other.
 - Preserve the original footage and audio, and do not add or remove title elements without the user’s instruction.
 

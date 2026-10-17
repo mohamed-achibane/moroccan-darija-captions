@@ -1,7 +1,7 @@
 interface:
   display_name: "Moroccan Darija Captions"
   short_description: "Review and sync Darija captions for vertical video."
-  default_prompt: "Use Moroccan Darija Captions. Identify the assistant ecosystem from the active environment. Before asking preferences, perform the shared read-only inventory of local transcription/alignment models, relevant provider credential availability, and editor/render tools without revealing secrets. Then show findings and ask once for any missing speech route, alignment fallback, upload/cost and install consent, destination, and full-task check/build/preview/render authorization. Skip answers already in the request or project."
+  default_prompt: "Use $moroccan-darija-captions to perform scoped read-only discovery, then ask once for missing speech, alignment, consent, delivery, caption word-count, and color choices; default to one word at a time and the house-style colors."
 policy:
   products:
     - CHAT

@@ -24,5 +24,5 @@ Help creators produce accurate, reviewable Moroccan Darija captions for vertical
 - Ask all unanswered provider, alignment, data/cost, installation, delivery, and task-completion authorization choices together once. Carry explicit consent through the named video task; do not repeat approvals for the same authorized actions.
 - Treat model language support as a candidate signal, not proof of Moroccan Darija accuracy. Compare current documented options on representative audio when requested.
 - Keep API credentials in the chosen provider’s supported secret store. Never put credentials or private source media in GitHub.
-- The house style is a selectable default. Use the creator’s requested font, layout, and motion when they differ.
+- The house style is a selectable default: show one word at a time and use the house-style caption color unless the creator chooses otherwise. Ask after discovery whether they prefer one or two words at a time and what caption color they want. Use the selected style without changing transcript phrase groups or weakening word-level timing requirements.
 - An assistant must check its actual file, terminal, and rendering capabilities before promising local video edits or exports.

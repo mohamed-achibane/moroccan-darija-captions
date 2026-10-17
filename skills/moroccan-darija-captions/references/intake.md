@@ -24,11 +24,13 @@ Then ask one bundled intake containing only choices not already answered in the 
 
 > **Speech route:** Shall I use **[recommended current API/model]**, **[available local ASR model]**, or install **[local ASR runtime/model and size]**? If I use **[provider]**, may I send this clip's **audio** to that provider and spend up to **[estimated amount or user-set cap]**? For word timing, may I use **[provider timestamps/existing aligner]** or install **[aligner packages and model names/sizes]**? A detected API key is not permission to use it. I will never ask you to paste a key.
 >
+> **Caption appearance:** Would you like captions to show **one word at a time (default)** or **two consecutive words at a time**, with the spoken word highlighted? What color should the captions use? A color name or HEX value is fine. If you choose two words and provide one color, apply it to the spoken word and keep the following word in the house-style secondary color unless you request another color. If you do not specify a color, use the house-style colors.
+>
 > **Project and destination:** I found **[editor/existing project]** and will deliver **[editable project and fresh MP4]** to **[folder/name]**, using the approved house style unless you already supplied another style. If no editor is already clear, do you prefer HyperFrames or Remotion? If no output location is clear, where should I save the project and MP4?
 >
 > **End-to-end authorization:** Do you authorize me to review the full audio and transcript, create the editable composition, open and review the editor preview/Studio when available, run the relevant media checks, build, render a fresh MP4, and inspect the final video and audio—all in this task without asking again at each step? If words remain genuinely unclear after review, should I pause for your help or render a clearly marked review draft?
 
-The ecosystem-specific speech prompts below replace the generic **Speech route** wording above; they are not extra questions. Keep the complete intake to one message and omit any choice already answered.
+The ecosystem-specific speech prompts below replace the generic **Speech route** wording above; they are not extra questions. Keep the complete intake to one message and omit any choice already answered, including caption word count or color already specified in the request or project. If caption appearance is unanswered, proceed with one word at a time and the house-style colors after presenting the choice; do not block the task solely for a missing style preference.
 
 Do not ask about a source, destination, editor, style, provider, or action the user has already clearly specified. When a user asks for a recommendation, recommend one option from the discovered tools and current documentation rather than asking them to compare a long vendor list.
 
