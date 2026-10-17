@@ -36,7 +36,7 @@ Use [transcription-models.md](references/transcription-models.md) and current of
 
 1. Transcribe from the opening through the final audible word. Use the current provider docs to choose settings for verbatim output, target languages, code-switching, and timestamps.
 2. Keep Moroccan Darija in Arabic script. Keep spoken French and English in Latin script. Do not translate, transliterate, paraphrase, normalize dialect, or silently remove fillers, repetitions, or false starts.
-3. Retain uncertain spans. Review Darija, names, numbers, and mixed-language words against the audio and correct recognition errors before composing captions.
+3. Retain uncertain spans. Review the complete transcript against the audio and correct recognition errors before composing captions. Use the workflow in [listening-review.md](references/listening-review.md); do not substitute a model's confidence or agreement for listening.
 4. Keep an unmodified record of the source transcript. Put display-only styling such as uppercase Latin text or punctuation removal in the renderer, not the transcript.
 
 ## 5. Align and review each word
@@ -45,7 +45,7 @@ Use [transcription-models.md](references/transcription-models.md) and current of
 2. Use provider word timestamps when the provider documents them and they match the audio. If times are segment-level, missing, or unreliable, align the reviewed words to the source audio with WhisperX or another available acoustic aligner.
 3. WhisperX can combine Whisper transcription and forced alignment, or align a corrected transcript. For code-switching, check which alignment models cover each language; split alignment spans at language changes when required. Never present one language model’s alignment as reliable for words it does not support.
 4. Do not spread words evenly through a phrase or guess boundaries. Mark unaligned words for listening and correction rather than manufacturing precision.
-5. Listen to the opening, representative Darija, French/English switches, and the ending. Report any remaining uncertainty and whether a human reviewed the audio.
+5. Run the listening review described in [listening-review.md](references/listening-review.md). Review wording across the full clip and review every low-confidence or anomalous timing cue plus a sample of unflagged words. Report full versus partial coverage, whether the reviewer was a person or a model, and remaining uncertainty. If this environment cannot perceive local audio, prepare the review page for a qualified person and do not claim to have listened.
 
 ## 6. Keep transcript data as the source of truth
 
