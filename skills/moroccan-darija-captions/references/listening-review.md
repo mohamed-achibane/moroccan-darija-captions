@@ -2,6 +2,8 @@
 
 Listening review is a quality step, not a model name. Speech recognition proposes words, and forced alignment estimates where supplied words occur. Neither proves that a word was heard correctly or that its boundary matches the sound.
 
+Before asking a person to focus on flagged spans, optionally run the separate [automated first pass](automated-first-pass.md) when its provider upload and cost were authorized. Keep its candidate wording and timing proposals clearly labeled as machine output; it does not replace listening.
+
 ## Choose the reviewer honestly
 
 1. If the active assistant has genuine audio input and the user authorized that provider and cost, it may make a **model-assisted audio audit**. Record the model and mark the result as machine-reviewed. Do not describe that as a human listening review or as ground truth.

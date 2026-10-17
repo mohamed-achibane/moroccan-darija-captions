@@ -41,11 +41,12 @@ Use [transcription-models.md](references/transcription-models.md) and current of
 
 ## 5. Align and review each word
 
-1. Ensure every spoken word has a start and end time on the final video’s clock.
-2. Use provider word timestamps when the provider documents them and they match the audio. If times are segment-level, missing, or unreliable, align the reviewed words to the source audio with WhisperX or another available acoustic aligner.
-3. WhisperX can combine Whisper transcription and forced alignment, or align a corrected transcript. For code-switching, check which alignment models cover each language; split alignment spans at language changes when required. Never present one language model’s alignment as reliable for words it does not support.
-4. Do not spread words evenly through a phrase or guess boundaries. Mark unaligned words for listening and correction rather than manufacturing precision.
-5. Run the listening review described in [listening-review.md](references/listening-review.md). Review wording across the full clip and review every low-confidence or anomalous timing cue plus a sample of unflagged words. Report full versus partial coverage, whether the reviewer was a person or a model, and remaining uncertainty. If this environment cannot perceive local audio, prepare the review page for a qualified person and do not claim to have listened.
+1. Before a human listening pass, use the optional [automated first pass](references/automated-first-pass.md) on flagged spans when the user has authorized the provider upload and cost. Keep its report outside the source project; record window/token counts and exact, partial, and no-agreement phrase counts. Route every partial/disagreement and timing proposal to listening review. The pass is complete only when this report exists or the agent records why consent/tools prevented it; it never edits the source transcript.
+2. Keep every spoken word timed on the final video's clock.
+3. Use provider word timestamps when the provider documents them and they match the audio. If times are segment-level, missing, or unreliable, align only text that has been reviewed or has exact provisional ASR agreement, using WhisperX or another available acoustic aligner.
+4. For code-switching, check which alignment models cover each language; split alignment spans at language changes when required. Never present one language model’s alignment as reliable for words it does not support.
+5. Do not spread words evenly through a phrase or guess boundaries. Mark incomplete, shifted, colliding, or low-confidence boundaries for listening rather than manufacturing precision.
+6. Run the human listening review described in [listening-review.md](references/listening-review.md). Review wording across the full clip and review every low-confidence or anomalous timing cue plus a sample of unflagged words. Report full versus partial coverage, whether the reviewer was a person or a model, and remaining uncertainty. If this environment cannot perceive local audio, prepare the review page for a qualified person and do not claim to have listened.
 
 ## 6. Keep transcript data as the source of truth
 

@@ -30,7 +30,7 @@ Start with [`START-HERE.md`](START-HERE.md). The matching entry skill performs a
 
 1. **Discover and choose:** inspect available local ASR/alignment tools and safe provider-credential availability, then recommend a current route for the clip. Ask once about cloud audio upload and a cost cap, local model installs/downloads, editor/output, and permission to complete the requested checks, preview, build, and render. A key's presence alone does not authorize its use.
 2. **Transcribe:** use the selected current API model or local model that fits the user's computer. No vendor is declared the universal winner; model names, features, and prices change.
-3. **Review and align:** check the full transcript against the audio using the local workflow in [`listening-review.md`](skills/moroccan-darija-captions/references/listening-review.md). Use the provider’s word timestamps when reliable; otherwise use an authorized acoustic aligner such as WhisperX, then review uncertain words and boundaries. A model or aligner is never reported as a human listener.
+3. **Review and align:** optionally compare flagged spans with an independent ASR pass using [`automated-first-pass.md`](skills/moroccan-darija-captions/references/automated-first-pass.md). Keep candidate wording separate from the transcript and propose timing changes only for exact agreement runs. Then check the full transcript against the audio using the local workflow in [`listening-review.md`](skills/moroccan-darija-captions/references/listening-review.md). A model or aligner is never reported as a human listener.
 4. **Compose:** use the selected HyperFrames or Remotion project. Keep the original video, audio, and opening title intact unless the user requests a different edit.
 5. **Review and deliver:** review the opening, a mixed-script passage, and the ending. Provide the editable project and a fresh MP4 when requested or authorized in the one-time intake.
 
@@ -80,6 +80,9 @@ Users can choose a different font, size, position, grouping, or color. The skill
 | `skills/moroccan-darija-captions/references/transcript-schema.md` | Normalized word and phrase-group data format. |
 | `skills/moroccan-darija-captions/scripts/validate_transcript.py` | Read-only structural validation for normalized transcript JSON. |
 | `skills/moroccan-darija-captions/scripts/prepare_listening_review.py` | Builds a local review page and cue manifest from a word-timed transcript. |
+| `skills/moroccan-darija-captions/scripts/automated_first_pass.py` | Sends only authorized, flagged audio windows to OpenAI and records alternative wording without editing the transcript. |
+| `skills/moroccan-darija-captions/scripts/propose_consensus_timings.py` | Uses already-cached WhisperX models offline to suggest timings for exact ASR-consensus runs. |
+| `skills/moroccan-darija-captions/references/automated-first-pass.md` | Consent, model comparison, conservative timing proposal, and honest-reporting workflow. |
 | `docs/INSTALL.md` | Installation and capability notes for each ecosystem. |
 
 ## Safety and quality
