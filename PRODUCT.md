@@ -19,7 +19,7 @@ Help creators produce accurate, reviewable Moroccan Darija captions for vertical
 
 ## Quality and safety rules
 
-- Review the complete clip, including the opening, language switches, and ending. Mark uncertainty instead of fabricating a word or timestamp.
+- Review the complete clip, including the opening, language switches, and ending. Keep wording review separate from timing review. Mark uncertainty instead of fabricating a word or timestamp, and never call model output or alignment a human listening review.
 - Before asking workflow preferences, perform a scoped, read-only inventory of available local ASR/alignment resources, relevant provider credential availability, and editor/render tools. Check credential presence only; never reveal secret values or treat a detected credential as consent to upload media or spend money.
 - Ask all unanswered provider, alignment, data/cost, installation, delivery, and task-completion authorization choices together once. Carry explicit consent through the named video task; do not repeat approvals for the same authorized actions.
 - Treat model language support as a candidate signal, not proof of Moroccan Darija accuracy. Compare current documented options on representative audio when requested.
