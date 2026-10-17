@@ -58,7 +58,7 @@ The built-in style starts from the approved treatment used for this skill’s or
 |---|---|
 | Canvas and source | 1080×1920 portrait; preserve source footage, audio, framing, and opening title. |
 | Captions | Full-clip, reviewed word timings; two consecutive words visible; highlight only the currently spoken word. |
-| Arabic | Logical RTL order, `dir="rtl"`, `lang="ar"`; Myriad Arabic Bold, 140px base at `1.12em` (about 157px). Ask before substituting if unavailable. |
+| Arabic | Logical RTL order, `dir="rtl"`, `lang="ar"`; Myriad Arabic Bold at 140px. Ask before substituting if unavailable. |
 | Latin | Dedicated row separate from Arabic; uppercase in display; Arial Bold at 100px. Preserve original transcript spelling and case. |
 | Color and placement | Active `#9DDBF5`, other text `#FFF9F0`; centered in lower safe area, about 300px above bottom, with the same baseline from the opening onward. |
 | Motion and decoration | Restrained fade/lift and subtle shadow; no background plate, frame, icons, or decorative graphics. |
