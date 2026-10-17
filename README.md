@@ -36,6 +36,32 @@ Start with [`START-HERE.md`](START-HERE.md). The matching entry skill performs a
 
 Local candidates include Darija-focused MoulSot and multilingual Whisper models through runtimes such as faster-whisper; WhisperX can transcribe locally and align a reviewed transcript. Local inference does not mean local installation is automatic: the skill checks compatibility and asks before installing packages or downloading weights. A text model writes the words; an aligner estimates where those reviewed words occur in the audio.
 
+## Copyable request for your AI coder
+
+Replace every bracketed value with your actual details before sending this prompt. Keep the explicit yes/no choices for uploads, spending, installs, checks, builds, and renders.
+
+```text
+Use the Moroccan Darija Captions skill installed for this AI environment, including its matching platform instructions. Detect which tools and permissions are actually available here; do not assume that I have a particular provider, API, editor, or renderer.
+
+Video: [full path to the video file, or attach it]
+Output folder: [full path where the editable project and authorized MP4 should go]
+Editor: [HyperFrames / Remotion / recommend after inspecting what is available]
+Spoken languages: [for example, Moroccan Darija in Arabic script, French and English in Latin script]
+Caption style: [use the skill's 140px Arabic preset / describe my custom style]
+Transcription preference: [provider and model / local model / recommend after discovery]
+
+Before editing, inspect the computer and project read-only for existing speech models, alignment tools, provider credential availability, fonts, editor, and renderer. Never reveal or ask me to paste an API key. Recommend a transcription and word-alignment route using current official provider documentation and what is already installed. Ask me once, in one message, only for choices that are still missing.
+
+My permissions for this video:
+- Upload audio to [provider, or “no cloud upload”]: [yes/no]. Maximum transcription or alignment spend: [currency and amount, or zero].
+- Install packages or download named local models: [yes/no; if yes, list what I approve and any storage limit].
+- Create the editable project and open a local preview: [yes/no].
+- Run project checks: [yes/no]. Build the project: [yes/no]. Render a fresh MP4: [yes/no].
+- If words remain uncertain after review: [pause and ask me / leave them flagged in an unapproved review draft].
+
+If authorized, complete the video end to end: transcribe the full audio verbatim, review the wording against the audio, align every word acoustically, compose the captions, inspect the preview, run only the checks/build/render steps I authorized, and deliver the editable project plus a fresh MP4 when rendering is authorized. Preserve the source video, audio, framing, and opening title. Keep Darija in Arabic script and spoken French/English in Latin script. Never invent wording or timings. Keep model suggestions separate from the transcript, and do not call model output a human listening review. Keep generated video files out of Git unless I explicitly ask you to commit or push this video.
+```
+
 ## Install
 
 ### Codex or Claude Code
