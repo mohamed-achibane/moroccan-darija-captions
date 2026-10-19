@@ -4,7 +4,7 @@ This is the starting preset from the skill author’s approved edit. Treat it as
 
 - 1080×1920 vertical. Preserve source image, audio, framing, and opening title.
 - Use word-level timing across the whole clip, with natural phrase groups in the transcript.
-- Display two consecutive words; highlight only the active spoken word in `#9DDBF5`; keep the other visible word `#FFF9F0`.
+- Default to one word at a time in the user-selected caption color, or `#9DDBF5` when no color is supplied. The optional two-word style shows the active word in the selected color (default `#9DDBF5`) and the following word in `#FFF9F0`, unless the user requests another color.
 - Keep Arabic in logical reading order with `dir="rtl"` and `lang="ar"`. Put Latin words on a dedicated row, isolate them with `dir="ltr"`, and uppercase only at display time.
 - Arabic font: Myriad Arabic Bold, weight 700, 140px, 2px current-color stroke. If unavailable, tell the user before substituting.
 - Latin font: Arial Bold, fixed 100px.

@@ -33,7 +33,7 @@ Use this format when a project does not already have a transcript schema. It kee
 - `words` contains every spoken word in audio order. `index` values are unique integers; `start` and `end` are measured from the final video clock.
 - `text` preserves the reviewed source transcript spelling, case, and punctuation. Store display-only changes, such as uppercase Latin or punctuation removal, in the renderer instead.
 - `parts` separates script runs inside a word when needed. Use `ar` with `rtl` for Arabic-script Darija/Arabic, and `fr` or `en` with `ltr` for French/English. Keep each string in its logical reading order.
-- `groups` are natural phrase-sized groups. Every word belongs to exactly one group; indices in a group must be consecutive and remain in transcript order. A renderer may show a two-word moving window over these source groups without changing the transcript grouping.
+- `groups` are natural phrase-sized groups. Every word belongs to exactly one group; indices in a group must be consecutive and remain in transcript order. By default, a renderer shows one timed word at a time; when the user chooses two-word display, it may show a two-word window without changing the transcript grouping. Display grouping never replaces word-level timing.
 - All timestamps must satisfy `0 <= start < end <= duration` (a 50 ms end tolerance is accepted by the validator for rounding).
 - These are schema rules, not a timing method. Use provider timestamps only when reliable; otherwise run acoustic alignment and review uncertain boundaries against audio.
 

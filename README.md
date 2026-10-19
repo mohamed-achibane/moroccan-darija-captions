@@ -28,7 +28,7 @@ Start with [`START-HERE.md`](START-HERE.md). The matching entry skill performs a
 
 ## How it works
 
-1. **Discover and choose:** inspect available local ASR/alignment tools and safe provider-credential availability, then recommend a current route for the clip. Ask once about cloud audio upload and a cost cap, local model installs/downloads, editor/output, and permission to complete the requested checks, preview, build, and render. A key's presence alone does not authorize its use.
+1. **Discover and choose:** inspect available local ASR/alignment tools and safe provider-credential availability, then recommend a current route for the clip. Ask once about cloud audio upload and a cost cap, local model installs/downloads, caption display (one word at a time by default or two consecutive words) and color, editor/output, and permission to complete the requested checks, preview, build, and render. A key's presence alone does not authorize its use.
 2. **Transcribe:** use the selected current API model or local model that fits the user's computer. No vendor is declared the universal winner; model names, features, and prices change.
 3. **Review and align:** optionally compare flagged spans with an independent ASR pass using [`automated-first-pass.md`](skills/moroccan-darija-captions/references/automated-first-pass.md). Merge disagreements into the listening queue at the complete phrase-group level, keep candidate wording separate from the transcript, and propose timing changes only for trusted wording. Check alignment chunk seams and use overlapping context when creating chunked timings. Then check the full transcript against the audio using the local workflow in [`listening-review.md`](skills/moroccan-darija-captions/references/listening-review.md). A model or aligner is never reported as a human listener.
 4. **Compose:** use the selected HyperFrames or Remotion project. Keep the original video, audio, and opening title intact unless the user requests a different edit.
@@ -47,6 +47,8 @@ Video: [full path to the video file, or attach it]
 Output folder: [full path where the editable project and authorized MP4 should go]
 Editor: [HyperFrames / Remotion / recommend after inspecting what is available]
 Spoken languages: [for example, Moroccan Darija in Arabic script, French and English in Latin script]
+Caption display: [one word at a time (default) / two consecutive words]
+Caption color: [color / use the house-style color]
 Caption style: [use the skill's 140px Arabic preset / describe my custom style]
 Transcription preference: [provider and model / local model / recommend after discovery]
 
@@ -83,10 +85,10 @@ The built-in style starts from the approved treatment used for this skill’s or
 | Element | Starting preset |
 |---|---|
 | Canvas and source | 1080×1920 portrait; preserve source footage, audio, framing, and opening title. |
-| Captions | Full-clip, reviewed word timings; two consecutive words visible; highlight only the currently spoken word. |
+| Captions | Full-clip, reviewed word timings; one word visible at a time by default; optional two consecutive words with the currently spoken word highlighted. |
 | Arabic | Logical RTL order, `dir="rtl"`, `lang="ar"`; Myriad Arabic Bold at 140px. Ask before substituting if unavailable. |
 | Latin | Dedicated row separate from Arabic; uppercase in display; Arial Bold at 100px. Preserve original transcript spelling and case. |
-| Color and placement | Active `#9DDBF5`, other text `#FFF9F0`; centered in lower safe area, about 300px above bottom, with the same baseline from the opening onward. |
+| Color and placement | Ask the user for caption color; default one-word color is `#9DDBF5`. In optional two-word mode, the next word defaults to `#FFF9F0`. Center in the lower safe area, about 300px above bottom, with the same baseline from the opening onward. |
 | Motion and decoration | Restrained fade/lift and subtle shadow; no background plate, frame, icons, or decorative graphics. |
 
 Users can choose a different font, size, position, grouping, or color. The skill asks before making a material design choice when the user has not supplied one.
